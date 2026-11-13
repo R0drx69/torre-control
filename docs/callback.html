@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Torre de Control · conectando…</title>
+<style>body{font:16px system-ui,sans-serif;background:#f4f5f7;color:#222;display:grid;place-items:center;height:100vh;margin:0}
+main{background:#fff;padding:32px 40px;border-radius:12px;box-shadow:0 2px 12px #0002;max-width:420px;text-align:center}</style>
+</head>
+<body>
+<main>
+  <h1>Torre de Control</h1>
+  <p id="msg">Volviendo a tu Torre de Control en este ordenador…</p>
+</main>
+<script>
+// Página puente: Meta redirige aquí (https) y esta página reenvía el código a la Torre de Control
+// que corre en el propio ordenador de la persona. No guarda ni envía nada a ningún servidor.
+(function () {
+  var q = location.search || "";
+  if (!/[?&](code|error)=/.test(q)) {
+    document.getElementById("msg").textContent = "Esta página solo se usa al conectar una cuenta desde la Torre de Control.";
+    return;
+  }
+  location.replace("http://localhost:8787/oauth/meta/callback" + q);
+})();
+</script>
+</body>
+</html>
